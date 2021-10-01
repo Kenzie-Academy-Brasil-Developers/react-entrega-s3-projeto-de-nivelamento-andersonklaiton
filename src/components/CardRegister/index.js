@@ -5,14 +5,21 @@ const CardRegister = ({ products, setProducts, cart, setCart }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit=(data)=>{
+    console.log(data.code)
       setProducts([...products, data])
   }
 
   const handleAddToCart = (code) => {
     const addProd = products.find((prod) => code === prod.code);
     setCart([...cart, addProd]);
-    console.log(cart)
+  
   };
+
+  const handleRemoveFromList = (code)=>{
+  
+    const newList = products.filter((prod)=> code !== prod.code)
+    setProducts(newList)
+  }
 
   return (
     <div className="container_register">
@@ -40,7 +47,7 @@ const CardRegister = ({ products, setProducts, cart, setCart }) => {
               <p>Descrição: {item.description}</p>
               <p>Preço: R$ {item.price}</p>
               <p>Disconto: R$ {item.discount}</p>
-              <button>Remover da Lista</button>
+              <button onClick={()=> handleRemoveFromList(item.code)}>Remover da Lista</button>
               <button onClick={() => handleAddToCart(item.code)}>
                 Adicionar no Carrinho
               </button>

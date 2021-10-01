@@ -1,6 +1,6 @@
 import "./styles.css"
 const CardCart = ({ cart, setCart }) => {
-    console.log(cart)
+
     let reducerPrice=0
     let reducerDiscount
     if(cart){
@@ -17,6 +17,7 @@ const CardCart = ({ cart, setCart }) => {
     }
 
     const handleRemove=(code)=>{
+  
         const rmProd = cart.filter((prod)=> code !== prod.code )
         setCart(rmProd)
     }
